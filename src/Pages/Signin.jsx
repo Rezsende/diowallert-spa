@@ -1,3 +1,5 @@
+import Buttom from "../Component/Button"
+import Input from "../Component/Input"
 import logo  from "../assets/logo.png"
 export default function Signin() {
     return (
@@ -6,20 +8,12 @@ export default function Signin() {
             <img src={logo} alt="" className="w-44"/>
 
             <form className=" flex flex-col justify-center gap-4 w-full text-2xl">
-                <input
-                    type="email"
-                    placeholder="Email"
-                    className="rounded p-2, w-full" />
-
-                <input
-                    type="Password"
-                    placeholder="Password"
-                    className="rounded p-2, w-full" />
-
-                <button
-                type="submit"
-                className="px-4 py-2 rounded w-full font-bold text-white text-2x1 "
-                >SIGNIN</button>
+                
+                
+                <Input type="email" placeholder="Email"/>
+                <Input type="password" placeholder="Password"/>
+                <Buttom type="submit" text="SIGNIN"/>
+                
             </form>
             <p className="text-white text-2xl">Dont't have an account? Register</p>
         </div>
