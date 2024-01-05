@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Buttom from "../Component/Button"
 import Input from "../Component/Input"
 import logo  from "../assets/logow.png"
@@ -7,7 +8,10 @@ export default function Signup() {
     return (
         <div className=" flex flex-col items-center justify-around bg-zinc-900 rounded p-6 w-[30rem] h-[25rem] relative">
 
-            <BiArrowBack className="text-white top-3 left-3 text-2xl absolute" />
+           
+           <Link to="/">   <BiArrowBack className="text-white top-3 left-3 text-2xl absolute hover:text-sky-600 " />             </Link>
+           
+            
             <img src={logo} alt="" className="w-40"/>
 
             {/* <h1 className=" text-white font-bold text-4xl py-5">Register</h1> */}

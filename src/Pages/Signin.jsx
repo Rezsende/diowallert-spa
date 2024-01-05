@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Buttom from "../Component/Button"
 import Input from "../Component/Input"
 import logo  from "../assets/logow.png"
@@ -15,7 +16,7 @@ export default function Signin() {
                 <Buttom type="submit" text="SIGNIN"/>
                 
             </form>
-            <p className="text-white text-lg">Dont't have an account? Register</p>
+            <p className="text-white text-lg">Dont't have an account?  <Link className="text-sky-500  hover:text-sky-600 " to="/Signup">Register</Link></p>
         </div>
     )
 }
