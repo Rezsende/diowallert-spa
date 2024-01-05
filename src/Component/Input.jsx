@@ -5,7 +5,7 @@ export default  function Input({type, placeholder})
         <input 
                     type={type}
                     placeholder={placeholder}
-                    className="rounded p-2, w-full h-8" />
+                    className="rounded px-2 w-full h-10 text-sm " />
 
     );
 }

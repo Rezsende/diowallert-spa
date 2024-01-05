@@ -1,13 +1,13 @@
 import Buttom from "../Component/Button"
 import Input from "../Component/Input"
-import logo  from "../assets/logo.png"
+import logo  from "../assets/logow.png"
 export default function Signin() {
     return (
-        <div className=" flex flex-col items-center justify-around bg-zinc-900 rounded p-8 w-[35rem] h-[35rem]">
+        <div className=" flex flex-col items-center justify-around bg-zinc-900 rounded p-8 w-[30rem] h-[25rem]">
 
-            <img src={logo} alt="" className="w-44"/>
+            <img src={logo} alt="" className="w-40"/>
 
-            <form className=" flex flex-col justify-center gap-4 w-full text-2xl">
+            <form className=" flex flex-col justify-center gap-4 w-full ">
                 
                 
                 <Input type="email" placeholder="Email"/>
@@ -15,7 +15,7 @@ export default function Signin() {
                 <Buttom type="submit" text="SIGNIN"/>
                 
             </form>
-            <p className="text-white text-2xl">Dont't have an account? Register</p>
+            <p className="text-white text-lg">Dont't have an account? Register</p>
         </div>
     )
 }

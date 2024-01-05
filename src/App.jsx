@@ -1,4 +1,5 @@
 import Signin from "./Pages/Signin";
+import Signup from "./Pages/Signup";
 
 function App() {
 return (
@@ -6,7 +7,9 @@ return (
 <main className="flex 
         items-center justify-center h-screen
         ">
-  <Signin/>
+  {/* <Signin/> */}
+
+ <Signup/>
 </main>
 
 )
