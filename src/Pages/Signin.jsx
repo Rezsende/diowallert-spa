@@ -1,55 +1,47 @@
 import { Link } from "react-router-dom"
 import Buttom from "../Component/Button"
 import Input from "../Component/Input"
-import logo  from "../assets/logow.png"
+import logo from "../assets/logow.png"
 import { useForm } from "react-hook-form"
 import z from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import ErrorMensage from "../Component/ErroMensage"
 
 
 const signinShema = z.object({
     email: z.string().nonempty("Email é obrigatório.").email().toLowerCase(),
     password: z.string().min(6, "A senha tem que ter no minimo 6 caracteres!"),
-  });
-  
+});
+
 export default function Signin() {
 
 
     const {
-    register, 
-    handleSubmit, 
-    formState:{errors}, 
-} = useForm({ resolver: zodResolver(signinShema)});
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({ resolver: zodResolver(signinShema) });
 
-   
 
-    function hansubform(data)
-    {
+
+    function hansubform(data) {
         console.log(data);
     }
 
     return (
-        <div className=" flex flex-col items-center justify-around bg-zinc-900 rounded p-8 w-[30rem] h-[25rem]">
+        <div className=" flex flex-col items-center justify-around bg-zinc-900 rounded p-8 w-[30rem] ">
 
-            <img src={logo} alt="" className="w-40"/>
+            <img src={logo} alt="" className="w-40 mb-8" />
 
             <form onSubmit={handleSubmit(hansubform)} className=" flex flex-col justify-center gap-4 w-full ">
-                
-                
-                <Input type="email"  placeholder="Email" register={register} name="email"/>
-               
-                {console.log(errors)}
+                <Input type="email" placeholder="Email" register={register} name="email" />
+                {errors.email && <ErrorMensage text={errors.email.message} />}
+                <Input type="password" placeholder="Password" register={register} name="password" />
+                {errors.email && <ErrorMensage text={errors.password.message} />}
+                <Buttom type="submit" text="SIGNIN" />
 
-                { errors.email && <span className="text-white bg-red-700 p-4">{errors.email.message}</span>}
-
-              
-                <Input type="password" placeholder="Password" register={register} name="password"/>
-                { errors.password && <span className="text-white bg-red-700 p-4">{errors.password.message}</span>}
-
-                <Buttom type="submit" text="SIGNIN"/>
-                
             </form>
-            <p className="text-white text-lg">Dont't have an account?  <Link className="text-sky-500  hover:text-sky-600 " to="/Signup">Register</Link></p>
+            <p className="text-white text-lg mt-8">Dont't have an account?  <Link className="text-sky-500  hover:text-sky-600 " to="/Signup">Register</Link></p>
         </div>
     )
 }
