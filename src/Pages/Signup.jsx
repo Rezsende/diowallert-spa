@@ -26,11 +26,12 @@ export default function Signup() {
 
     
     const navigate = useNavigate();
+   
     async function hansubform(data) {
         try {
             const response = await signup(data);
             // console.log(response);
-            navigate("/")
+            navigate("/Signin")
          
         } catch (error) {
             console.error("Erro ao fazer cadastro:", error);
@@ -43,7 +44,7 @@ export default function Signup() {
         <div className=" flex flex-col items-center justify-around bg-zinc-900 rounded p-6 w-[30rem]  relative">
 
            
-           <Link to="/">   <BiArrowBack className="text-white top-3 left-3 text-2xl absolute hover:text-sky-600 " />             </Link>
+           <Link to="/Signin">   <BiArrowBack className="text-white top-3 left-3 text-2xl absolute hover:text-sky-600 " />             </Link>
            
             
             <img src={logo} alt="" className="w-40 mb-6"/>

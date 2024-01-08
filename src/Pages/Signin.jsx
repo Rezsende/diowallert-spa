@@ -6,7 +6,9 @@ import { useForm } from "react-hook-form"
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMensage from "../Component/ErroMensage"
-import {signinShema} from "../schemas/SigninSchema"
+import { signinShema,  } from "../schemas/SigninSchema"
+import { signin } from "../Services/user"
+import Cookies from "js-cookie"
 
 
 
@@ -21,8 +23,19 @@ export default function Signin() {
 
 
 
-    function hansubform(data) {
+    async function hansubform(data) {
         console.log(data);
+        try {
+            const token = await signin(data);
+            Cookies.set("token", token.data, {expires: 1})
+            // console.log(token.data)
+        } catch (e) {
+            console.log(e.message);
+        }
+
+
+
+
     }
 
     return (
