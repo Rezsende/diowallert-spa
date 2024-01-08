@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Buttom from "../Component/Button"
 import Input from "../Component/Input"
 import logo  from "../assets/logow.png"
@@ -7,6 +7,7 @@ import { BiArrowBack } from "react-icons/bi";
 import {zodResolver} from "@hookform/resolvers/zod";
 import ErrorMensage from "../Component/ErroMensage";
 import {signinUpShema} from "../schemas/SignupSchema"
+import { signup } from "../Services/user";
 
 
 
@@ -23,10 +24,20 @@ export default function Signup() {
     
     } = useForm({ resolver: zodResolver(signinUpShema)});
 
-    function hansubform(data)
-    {
-        console.log(data);
+    
+    const navigate = useNavigate();
+    async function hansubform(data) {
+        try {
+            const response = await signup(data);
+            // console.log(response);
+            navigate("/")
+         
+        } catch (error) {
+            console.error("Erro ao fazer cadastro:", error);
+          
+        }
     }
+    
 
     return (
         <div className=" flex flex-col items-center justify-around bg-zinc-900 rounded p-6 w-[30rem]  relative">
