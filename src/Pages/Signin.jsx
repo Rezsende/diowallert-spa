@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Buttom from "../Component/Button"
 import Input from "../Component/Input"
 import logo from "../assets/logow.png"
@@ -14,7 +14,7 @@ import Cookies from "js-cookie"
 
 export default function Signin() {
 
-
+const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -24,10 +24,11 @@ export default function Signin() {
 
 
     async function hansubform(data) {
-        console.log(data);
+        // console.log(data);
         try {
             const token = await signin(data);
             Cookies.set("token", token.data, {expires: 1})
+            navigate("/")
             // console.log(token.data)
         } catch (e) {
             console.log(e.message);

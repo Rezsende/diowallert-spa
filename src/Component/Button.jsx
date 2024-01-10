@@ -1,17 +1,25 @@
+
+
+
+
+
 import { BiPlusCircle, BiMinusCircle } from "react-icons/bi";
-export default function Buttom({type, text, icon})
+import { useNavigate } from "react-router-dom";
 
-{
+export default function Button({ type, text, icon, transaction }) {
     let IconComponent;
+    const navigate = useNavigate(); // Correção aqui: useNavigate é uma função e deve ser chamada
 
-    if(icon === "plus") IconComponent = BiPlusCircle
-    if(icon === "minus") IconComponent = BiMinusCircle
-    return(
+    if (icon === "plus") IconComponent = BiPlusCircle;
+    if (icon === "minus") IconComponent = BiMinusCircle;
+
+    return (
         <button
-                type={type}
-                className="px-8   rounded w-full font-bold text-white text-lg  h-[2.8rem]   bg-gradient-to-r from-sky-500 to-indigo-500 flex justify-center items-center gap-2
-                "
-                >{IconComponent && <IconComponent/>} {text}   
-                </button>
-    )
-} 
+            type={type}
+            className="px-8 rounded w-full font-bold text-white text-lg h-[2.8rem] bg-gradient-to-r from-sky-500 to-indigo-500 flex justify-center items-center gap-2"
+            onClick={() => transaction && navigate(`/transaction/${transaction}`)}
+        >
+            {IconComponent && <IconComponent />} {text}
+        </button>
+    );
+}

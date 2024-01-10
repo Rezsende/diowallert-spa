@@ -9,6 +9,7 @@ import {
 import Signin from './Pages/Signin.jsx';
 import Signup from './Pages/Signup.jsx';
 import Home from './Pages/Home.jsx';
+import NewTransaction from './Pages/NewTransaction.jsx';
 
 const router = createBrowserRouter([
   
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/Signup",
     element: <Signup/>,
+  },
+  {
+    path: "/transaction/:type",
+    element: <NewTransaction/>,
   },
 ]);
 
