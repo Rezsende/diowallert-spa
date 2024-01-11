@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Button({ type, text, icon, transaction }) {
     let IconComponent;
-    const navigate = useNavigate(); // Correção aqui: useNavigate é uma função e deve ser chamada
+    const navigate = useNavigate();
 
     if (icon === "plus") IconComponent = BiPlusCircle;
     if (icon === "minus") IconComponent = BiMinusCircle;

@@ -48,7 +48,7 @@ const navigate = useNavigate();
                 <Input type="email" placeholder="Email" register={register} name="email" />
                 {errors.email && <ErrorMensage text={errors.email.message} />}
                 <Input type="password" placeholder="Password" register={register} name="password" />
-                {errors.email && <ErrorMensage text={errors.password.message} />}
+                {errors.password && <ErrorMensage text={errors.password.message} />}
                 <Buttom type="submit" text="SIGNIN" />
 
             </form>
