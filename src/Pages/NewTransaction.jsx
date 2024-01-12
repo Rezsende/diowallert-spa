@@ -1,5 +1,5 @@
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import Input from "../Component/Input";
 import ErrorMensage from "../Component/ErroMensage";
@@ -7,12 +7,14 @@ import Button from "../Component/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { transactionSchema } from "../schemas/TransactionSchema";
+import { createNewTransaction } from "../Services/transactnions";
 
 
 
 export default function NewTransaction()
 {
     const {type} = useParams();
+    const navigate = useNavigate();
     const {
       register,
       handleSubmit,
@@ -21,8 +23,17 @@ export default function NewTransaction()
       resolver: zodResolver(transactionSchema)
     });
 
-    function onsubmitForm(data){
-      console.log(data)
+  async  function onsubmitForm(data){
+      try{
+
+        const body = {...data, type}
+        await createNewTransaction(body);
+        navigate("/")
+      }catch(e)
+      {
+        console.log(e)
+
+      }
     }
 
   return <div className="flex flex-col items-center

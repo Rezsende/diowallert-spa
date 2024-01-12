@@ -66,7 +66,24 @@ async function getAllTransections(){
         <section className="bg-zinc-300 p-4 w-full h-full rounded flex
         items-center justify-center">
             
-            { transections.length ?(<p>Tem Alguma coisa</p>): (<p>There is no check-in or check-out</p>)}
+            { transections.length ?(
+
+               <ul className="w-full h-full flex flex-col justify-between">
+                    <div className=" h-[17rem] overflow-auto p-3">
+                        {
+                             transections.map((transections, index)=>(
+
+                                <li key={index} className="flex justify-between 
+                                items-start w-full
+                                " ><p>{transections.description}</p></li>
+                            ))
+                        }
+
+                    </div>
+                    <li>Balance</li>
+               </ul>
+           ): 
+            (<p>There is no check-in or check-out</p>)}
             
             </section>
         <footer className="w-full pt-2 flex gap-2 text-white 
