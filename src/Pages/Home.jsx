@@ -6,12 +6,14 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { userLogged } from "../Services/user";
 import { findAllTransaction } from "../Services/transactnions";
+import dayjs from "dayjs";
 
 export default function Home ()
 {
     const navigate = useNavigate();
     const [ user, setUser] = useState({});
     const [ transections, SetTransections] = useState({});
+    const [balance, setBalance] = useState(0);
     
     function validateToken()
     {
@@ -37,17 +39,30 @@ async function getAllTransections(){
     try{
       const response =  await findAllTransaction();
       SetTransections(response.data);
+      calculateBalance(response.data);
     }catch(error)
     {
         console.log(error);
     }
 }
     
+
+function calculateBalance(transections)
+{
+    let total = 0;
+    transections.forEach((transections) => {
+        transections.type === "input"
+        ? (total += Number(transections.value))
+        :(total -= Number(transections.value));
+    });
+    setBalance(total);   
+}
     useEffect(()=>
     {
         validateToken();
         getUserLogged();
         getAllTransections();
+       
     }, [])
     return (
         <main className=" flex flex-col items-center justify-center
@@ -74,13 +89,44 @@ async function getAllTransections(){
                              transections.map((transections, index)=>(
 
                                 <li key={index} className="flex justify-between 
-                                items-start w-full
-                                " ><p>{transections.description}</p></li>
+                                items-start w-full" >
+
+
+                                    <span className="flex items-center gap-2">
+                                        <span className="text-base text-zinc-500">
+                                            {dayjs(transections.created_at).format("DD/MM")}
+                                            
+                                            {/* {transections.created_at} */}
+                                        </span>
+                                        {transections.description}
+                                    </span>
+
+                                    <span className={`
+                                    
+                                    ${transections.type === "input"? "text-green-700" : "text-red-700"}
+                                    
+                                    `}>
+                                    {transections.value}
+                                    </span>
+                                    
+                                    {/* <p>{transections.description}</p>
+                                 */}
+                                
+                                
+                                </li>
                             ))
                         }
 
                     </div>
-                    <li>Balance</li>
+                    <li className="flex justify-between items-start w-full px-3">
+                        
+                        <span>Balance:</span>
+                        <span
+                        className={` ${balance > 0 ? "text-green-700": "text-red-700"}`}
+                        >{balance}</span>
+                         
+                        
+                    </li>
                </ul>
            ): 
             (<p>There is no check-in or check-out</p>)}
